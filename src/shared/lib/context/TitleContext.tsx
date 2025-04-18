@@ -1,4 +1,3 @@
-// context/TitleContext.tsx
 import { createContext, useContext, useState } from "react";
 
 interface TitleContextType {
