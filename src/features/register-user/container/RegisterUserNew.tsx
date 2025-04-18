@@ -10,7 +10,8 @@ import { usePhones } from "@/shared/lib/hooks/usePhones";
 const RegisterUserNew = () => {
   usePageTitle("Novo usuário");
 
-  const { addresses, addAddress, updateAddress } = useAddresses();
+  const { addresses, addAddress, updateAddress, removeAddress } =
+    useAddresses();
   const { phones, addPhone, updatePhone } = usePhones();
 
   return (
@@ -30,6 +31,7 @@ const RegisterUserNew = () => {
             index={index}
             address={address}
             updateField={updateAddress}
+            removeAddress={removeAddress}
           />
         ))}
 
