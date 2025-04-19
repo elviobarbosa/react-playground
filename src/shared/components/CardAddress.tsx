@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { maskValue } from "../lib/helpers/masks.helper";
 import { Address } from "../lib/hooks/useAddress";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
@@ -17,6 +19,14 @@ const CardAddress = ({
   updateField,
   removeAddress,
 }: CardAddressProps) => {
+  const maskCep = (value: string) => maskValue(value, "cep");
+
+  useEffect(() => {
+    if (address.cep && address.cep !== maskCep(address.cep)) {
+      updateField(index, "cep", maskCep(address.cep));
+    }
+  }, [address.cep, index, updateField]);
+
   return (
     <>
       <Card key={index} className="p-4 mb-4">
@@ -58,7 +68,11 @@ const CardAddress = ({
               <label className="block text-sm font-medium mb-1">CEP</label>
               <Input
                 value={address.cep}
-                onChange={(e) => updateField(index, "cep", e.target.value)}
+                maxLength={9}
+                onChange={(e) => {
+                  const maskedValue = maskCep(e.target.value);
+                  updateField(index, "cep", maskedValue);
+                }}
                 placeholder="CEP"
                 required
               />

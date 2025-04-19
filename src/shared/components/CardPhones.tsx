@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { maskValue } from "../lib/helpers/masks.helper";
 import { Phones } from "../lib/hooks/usePhones";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
@@ -9,8 +11,15 @@ interface CardPhonesProps {
   phone: Phones;
   updateField: (index: number, campo: keyof Phones, valor: unknown) => void;
 }
+const maskPhone = (value: string) => maskValue(value, "phone");
 
 const CardPhones = ({ index, phone, updateField }: CardPhonesProps) => {
+  useEffect(() => {
+    if (phone.number && phone.number !== maskPhone(phone.number)) {
+      updateField(index, "number", maskPhone(phone.number));
+    }
+  }, [phone.number, index, updateField]);
+
   return (
     <>
       <Card key={index} className="p-4 mb-4">
@@ -26,8 +35,11 @@ const CardPhones = ({ index, phone, updateField }: CardPhonesProps) => {
             <label className="block text-sm font-medium mb-1">Telefone</label>
             <Input
               value={phone.number}
-              onChange={(e) => updateField(index, "number", e.target.value)}
-              placeholder="+55 (00) 00000-0000"
+              onChange={(e) => {
+                const maskValue = maskPhone(e.target.value);
+                updateField(index, "number", maskValue);
+              }}
+              placeholder="(00) 00000-0000"
               required
             />
           </div>

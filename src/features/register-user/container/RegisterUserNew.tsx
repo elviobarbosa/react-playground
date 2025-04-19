@@ -6,23 +6,74 @@ import { Input } from "@/shared/components/ui/input";
 import CardPhones from "@/shared/components/CardPhones";
 import { useAddresses } from "@/shared/lib/hooks/useAddress";
 import { usePhones } from "@/shared/lib/hooks/usePhones";
+import { Card } from "@/shared/components/ui/card";
+import { useState } from "react";
+import { useMaskedInput } from "@/shared/lib/hooks/use-mask-input";
 
 const RegisterUserNew = () => {
   usePageTitle("Novo usuário");
 
+  const cpfInput = useMaskedInput("cpf");
+  const cnpjInput = useMaskedInput("cnpj");
   const { addresses, addAddress, updateAddress, removeAddress } =
     useAddresses();
   const { phones, addPhone, updatePhone } = usePhones();
 
+  const [tipoPessoa, setTipoPessoa] = useState("fisica");
+  const isFisica = tipoPessoa === "fisica";
+
   return (
     <>
-      <pre>{JSON.stringify(addresses, null, 2)}</pre>
-      <pre>{JSON.stringify(phones, null, 2)}</pre>
-      <h2>Novo usuário</h2>
-      <p>Formulario de cadastro de novo usuário</p>
       <form>
-        <Input type="text" placeholder="Nome" />
-        <Input type="email" placeholder="Email" />
+        <Card className="p-4 mb-4">
+          <div className="flex justify-between items-center mb-3">
+            <h3 className="text-lg font-medium">Dados pessoais</h3>
+          </div>
+
+          <div className="flex flex-col gap-4 md:flex-row">
+            <div className="">
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="tipoPessoa"
+                  value="fisica"
+                  defaultChecked
+                  onChange={(e) => setTipoPessoa(e.target.value)}
+                  className="radio radio-primary"
+                />
+                <span>Pessoa Física</span>
+              </label>
+            </div>
+
+            <div className="flex-1 flex flex-col">
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="tipoPessoa"
+                  value="juridica"
+                  onChange={(e) => setTipoPessoa(e.target.value)}
+                  className="radio radio-primary"
+                />
+                <span>Pessoa Jurídica</span>
+              </label>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-3 gap-4">
+            <Input
+              type="text"
+              placeholder={isFisica ? "CPF" : "CNPJ"}
+              maxLength={isFisica ? 14 : 18}
+              value={isFisica ? cpfInput.value : cnpjInput.value}
+              onChange={isFisica ? cpfInput.onChange : cnpjInput.onChange}
+            />
+            <Input
+              type="text"
+              placeholder={isFisica ? "Nome completo" : "Razão social"}
+            />
+            <Input type="email" placeholder="Email" />
+          </div>
+        </Card>
 
         <h2>Endereço do cliente</h2>
         {addresses.map((address, index) => (
@@ -67,6 +118,8 @@ const RegisterUserNew = () => {
           </Button>
         </div>
       </form>
+      <pre>{JSON.stringify(addresses, null, 2)}</pre>
+      <pre>{JSON.stringify(phones, null, 2)}</pre>
     </>
   );
 };
