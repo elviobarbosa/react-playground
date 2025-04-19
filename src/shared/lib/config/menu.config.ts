@@ -1,18 +1,14 @@
 import {
   IconCamera,
-  IconChartBar,
   IconDatabase,
   IconFileAi,
   IconFileDescription,
   IconFileWord,
-  IconFolder,
   IconHelp,
-  IconListDetails,
   IconReport,
   IconSearch,
   IconSettings,
   IconUserPlus,
-  IconUsers,
 } from "@tabler/icons-react";
 
 export const MENU_LEFT = {
@@ -26,26 +22,6 @@ export const MENU_LEFT = {
       title: "Cadastro",
       url: "/register-user",
       icon: IconUserPlus,
-    },
-    {
-      title: "Lifecycle",
-      url: "#",
-      icon: IconListDetails,
-    },
-    {
-      title: "Analytics",
-      url: "#",
-      icon: IconChartBar,
-    },
-    {
-      title: "Projects",
-      url: "#",
-      icon: IconFolder,
-    },
-    {
-      title: "Team",
-      url: "#",
-      icon: IconUsers,
     },
   ],
   navClouds: [
