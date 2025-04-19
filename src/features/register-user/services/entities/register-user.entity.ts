@@ -8,6 +8,7 @@ export type RegisterUser = {
   nomeRazao: string;
   enderecos: Address[];
   telefones: Phones[];
+  isValid: boolean;
 };
 
 export type RegisterUserRequest = {

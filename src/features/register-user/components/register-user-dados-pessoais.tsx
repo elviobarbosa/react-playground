@@ -3,6 +3,11 @@ import { Input } from "@/shared/components/ui/input";
 import { useState } from "react";
 import { DadosPessoaisType } from "../services/entities/register-user.entity";
 import { maskValue } from "@/shared/lib/helpers/masks.helper";
+import {
+  validateCpfCnpj,
+  validateEmail,
+  validateNomeRazao,
+} from "../services/validators/register-user-dados-pessoais.validator";
 
 interface DadosPessoaisProps {
   formData: Partial<DadosPessoaisType>;
@@ -17,10 +22,25 @@ const RegisterUserDadosPessoais = ({
   const maskCNPJ = (value: string) => maskValue(value, "cnpj");
 
   const [tipoPessoa, setTipoPessoa] = useState("fisica");
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const isFisica = tipoPessoa === "fisica";
   const cpfCnpjLabel = isFisica ? "CPF" : "CNPJ";
   const nomeRazaoLabel = isFisica ? "Nome completo" : "Razão social";
+
+  const tipoPessoaHandler = (value: string) => {
+    updateForm({ tipo: value });
+    setTipoPessoa(value);
+  };
+
+  const validateHandler = () => {
+    const errors = {
+      ...validateEmail(formData),
+      ...validateCpfCnpj(formData, tipoPessoa),
+      ...validateNomeRazao(formData),
+    };
+    setErrors(errors);
+  };
 
   return (
     <Card className="p-4 mb-4">
@@ -35,8 +55,8 @@ const RegisterUserDadosPessoais = ({
               type="radio"
               name="tipoPessoa"
               value="fisica"
-              defaultChecked
-              onChange={(e) => setTipoPessoa(e.target.value)}
+              checked={tipoPessoa === "fisica"}
+              onChange={(e) => tipoPessoaHandler(e.target.value)}
               className="radio radio-primary"
             />
             <span>Pessoa Física</span>
@@ -49,7 +69,8 @@ const RegisterUserDadosPessoais = ({
               type="radio"
               name="tipoPessoa"
               value="juridica"
-              onChange={(e) => setTipoPessoa(e.target.value)}
+              checked={tipoPessoa === "juridica"}
+              onChange={(e) => tipoPessoaHandler(e.target.value)}
               className="radio radio-primary"
             />
             <span>Pessoa Jurídica</span>
@@ -67,6 +88,8 @@ const RegisterUserDadosPessoais = ({
             placeholder={cpfCnpjLabel}
             maxLength={isFisica ? 14 : 18}
             value={formData.cpfCnpj || ""}
+            onBlur={validateHandler}
+            required={true}
             onChange={(e) => {
               const cpfCnpj = isFisica
                 ? maskCPF(e.target.value)
@@ -74,6 +97,9 @@ const RegisterUserDadosPessoais = ({
               updateForm({ cpfCnpj: cpfCnpj });
             }}
           />
+          {errors.cpfCnpj && (
+            <span className="text-xs text-red-600">{errors.cpfCnpj}</span>
+          )}
         </div>
         <div>
           <label className="block text-sm font-medium mb-1">
@@ -82,10 +108,14 @@ const RegisterUserDadosPessoais = ({
           <Input
             type="text"
             placeholder={nomeRazaoLabel}
-            name="name"
+            name="nomeRazo"
+            onBlur={validateHandler}
             value={formData.nomeRazao || ""}
             onChange={(e) => updateForm({ nomeRazao: e.target.value })}
           />
+          {errors.nomeRazao && (
+            <span className="text-xs text-red-600">{errors.nomeRazao}</span>
+          )}
         </div>
         <div>
           <label className="block text-sm font-medium mb-1">Email</label>
@@ -93,9 +123,13 @@ const RegisterUserDadosPessoais = ({
             type="email"
             placeholder="Email"
             name="email"
+            onBlur={validateHandler}
             value={formData.email || ""}
             onChange={(e) => updateForm({ email: e.target.value })}
           />
+          {errors.email && (
+            <span className="text-xs text-red-600">{errors.email}</span>
+          )}
         </div>
       </div>
     </Card>

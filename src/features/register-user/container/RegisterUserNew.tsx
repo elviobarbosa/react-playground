@@ -10,6 +10,11 @@ import React, { useState } from "react";
 import { DadosPessoaisType } from "../services/entities/register-user.entity";
 import { transform } from "@/shared/lib/helpers/transform.helper";
 import { RegisterUserDadosPessoaisMapper } from "../services/mappers/register-user-dados-pessoais.mapper";
+import {
+  validateCpfCnpj,
+  validateEmail,
+  validateNomeRazao,
+} from "../services/validators/register-user-dados-pessoais.validator";
 
 const RegisterUserNew = () => {
   usePageTitle("Novo usuário");
@@ -22,6 +27,7 @@ const RegisterUserNew = () => {
     cpfCnpj: transform("12345678901").cpf().value(),
     nomeRazao: "Elvio Barbosa",
     email: "elviobarbosa@gmail.com",
+    isValid: false,
   });
 
   const updateDadosPessoais = (newData: Partial<DadosPessoaisType>) => {
@@ -33,6 +39,16 @@ const RegisterUserNew = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const isValidCpfCnpj = validateCpfCnpj(dadosPessoais, dadosPessoais.tipo);
+
+    const isValidEmail = validateEmail(dadosPessoais);
+    const isValidNomeRazao = validateNomeRazao(dadosPessoais);
+    const isValid = !isValidCpfCnpj && !isValidEmail && !isValidNomeRazao;
+    if (isValid) {
+      console.log("OK para enviar");
+    } else {
+      console.log("Nao pode enviar");
+    }
   };
 
   return (
