@@ -9,11 +9,19 @@ import { Trash2 } from "lucide-react";
 interface CardPhonesProps {
   index: number;
   phone: Phones;
+  total: number;
   updateField: (index: number, campo: keyof Phones, valor: unknown) => void;
+  removeItem: (index: number) => void;
 }
 const maskPhone = (value: string) => maskValue(value, "phone");
 
-const CardPhones = ({ index, phone, updateField }: CardPhonesProps) => {
+const CardPhones = ({
+  index,
+  phone,
+  total,
+  updateField,
+  removeItem,
+}: CardPhonesProps) => {
   useEffect(() => {
     if (phone.number && phone.number !== maskPhone(phone.number)) {
       updateField(index, "number", maskPhone(phone.number));
@@ -25,10 +33,18 @@ const CardPhones = ({ index, phone, updateField }: CardPhonesProps) => {
       <Card key={index} className="p-4 mb-4">
         <div className="flex justify-between items-center mb-3">
           <h3 className="text-lg font-medium">Telefones {index + 1}</h3>
-
-          <Button type="button" variant="destructive" size="icon">
-            <Trash2 size={16} />
-          </Button>
+          {total > 1 && (
+            <Button
+              type="button"
+              variant="destructive"
+              size="icon"
+              onClick={() => {
+                removeItem(index);
+              }}
+            >
+              <Trash2 size={16} />
+            </Button>
+          )}
         </div>
         <div className="grid grid-cols-1 gap-3">
           <div>
@@ -39,6 +55,7 @@ const CardPhones = ({ index, phone, updateField }: CardPhonesProps) => {
                 const maskValue = maskPhone(e.target.value);
                 updateField(index, "number", maskValue);
               }}
+              maxLength={15}
               placeholder="(00) 00000-0000"
               required
             />

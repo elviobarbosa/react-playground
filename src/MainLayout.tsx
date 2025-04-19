@@ -3,6 +3,7 @@ import { SidebarInset, SidebarProvider } from "./shared/components/ui/sidebar";
 import { AppSidebar } from "./shared/components/app-sidebar";
 import { SiteHeader } from "./shared/components/site-header";
 import { TitleProvider } from "./shared/lib/context/TitleContext";
+import { Toaster } from "sonner";
 
 export default function MainLayout() {
   return (
@@ -18,6 +19,7 @@ export default function MainLayout() {
               </div>
             </div>
           </div>
+          <Toaster />
         </SidebarInset>
       </SidebarProvider>
     </TitleProvider>

@@ -22,6 +22,7 @@ export function usePhones() {
   };
 
   const removePhone = (index: number) => {
+    console.log(index, "remove");
     removeItem(index);
   };
 

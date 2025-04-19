@@ -1,6 +1,6 @@
 import { Card } from "@/shared/components/ui/card";
 import { Input } from "@/shared/components/ui/input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DadosPessoaisType } from "../services/entities/register-user.entity";
 import { maskValue } from "@/shared/lib/helpers/masks.helper";
 import {
@@ -41,6 +41,11 @@ const RegisterUserDadosPessoais = ({
     };
     setErrors(errors);
   };
+
+  useEffect(() => {
+    if (formData.isValid) return;
+    validateHandler();
+  }, [formData.isValid]);
 
   return (
     <Card className="p-4 mb-4">

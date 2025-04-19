@@ -9,15 +9,17 @@ import { Trash2 } from "lucide-react";
 interface CardAddressProps {
   index: number;
   address: Address;
+  total: number;
   updateField: (index: number, campo: keyof Address, valor: unknown) => void;
-  removeAddress: (index: number) => void;
+  removeItem: (index: number) => void;
 }
 
 const CardAddress = ({
   index,
   address,
+  total,
   updateField,
-  removeAddress,
+  removeItem,
 }: CardAddressProps) => {
   const maskCep = (value: string) => maskValue(value, "cep");
 
@@ -32,15 +34,16 @@ const CardAddress = ({
       <Card key={index} className="p-4 mb-4">
         <div className="flex justify-between items-center mb-3">
           <h3 className="text-lg font-medium">Endereço {index + 1}</h3>
-
-          <Button
-            type="button"
-            variant="destructive"
-            size="icon"
-            onClick={() => removeAddress(index)}
-          >
-            <Trash2 size={16} />
-          </Button>
+          {total > 1 && (
+            <Button
+              type="button"
+              variant="destructive"
+              size="icon"
+              onClick={() => removeItem(index)}
+            >
+              <Trash2 size={16} />
+            </Button>
+          )}
         </div>
         <div className="grid grid-cols-1 gap-3">
           <div>

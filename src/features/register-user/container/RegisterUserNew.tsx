@@ -15,19 +15,20 @@ import {
   validateEmail,
   validateNomeRazao,
 } from "../services/validators/register-user-dados-pessoais.validator";
+import { toast } from "sonner";
 
 const RegisterUserNew = () => {
   usePageTitle("Novo usuário");
 
   const { addresses, addAddress, updateAddress, removeAddress } =
     useAddresses();
-  const { phones, addPhone, updatePhone } = usePhones();
+  const { phones, addPhone, updatePhone, removePhone } = usePhones();
   const [dadosPessoais, setDadosPessoais] = useState<DadosPessoaisType>({
     tipo: "fisica",
     cpfCnpj: transform("12345678901").cpf().value(),
-    nomeRazao: "Elvio Barbosa",
+    nomeRazao: "",
     email: "elviobarbosa@gmail.com",
-    isValid: false,
+    isValid: true,
   });
 
   const updateDadosPessoais = (newData: Partial<DadosPessoaisType>) => {
@@ -44,10 +45,21 @@ const RegisterUserNew = () => {
     const isValidEmail = validateEmail(dadosPessoais);
     const isValidNomeRazao = validateNomeRazao(dadosPessoais);
     const isValid = !isValidCpfCnpj && !isValidEmail && !isValidNomeRazao;
+    setDadosPessoais(() => ({
+      ...dadosPessoais,
+      isValid,
+    }));
+    console.log(dadosPessoais);
     if (isValid) {
-      console.log("OK para enviar");
+      toast("Formulário enviado com sucesso", {
+        icon: "✅",
+      });
     } else {
-      console.log("Nao pode enviar");
+      toast("Formulário não pode ser enviado", {
+        description:
+          "Há erros no seu formulário, corrija-os e tente novamente.",
+        icon: "🚨",
+      });
     }
   };
 
@@ -64,8 +76,9 @@ const RegisterUserNew = () => {
             key={index}
             index={index}
             address={address}
+            total={addresses.length}
             updateField={updateAddress}
-            removeAddress={removeAddress}
+            removeItem={removeAddress}
           />
         ))}
 
@@ -83,7 +96,9 @@ const RegisterUserNew = () => {
             key={index}
             index={index}
             phone={phone}
+            total={phones.length}
             updateField={updatePhone}
+            removeItem={removePhone}
           />
         ))}
         <Button
