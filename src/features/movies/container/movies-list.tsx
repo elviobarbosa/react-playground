@@ -14,38 +14,59 @@ const MoviesList = () => {
   const [movies, setMovies] = useState<MovieListResult[]>([]);
   const [genres, setGenres] = useState<{ id: number; name: string }[]>([]);
   const [selectedGenre, setSelectedGenre] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const load = async () => {
-      const data = await fetchMoviesList();
-      setMovies(data);
-    };
-
     const loadGenres = async () => {
-      const data = await fetchMovieGenres();
-      setGenres(data);
+      try {
+        const data = await fetchMovieGenres();
+        setGenres(data);
+      } catch (error) {
+        console.error("Erro ao carregar gêneros:", error);
+      }
     };
 
-    const loadFilteredMovies = async () => {
-      if (!selectedGenre) return;
-
-      const filtered = await fetchMoviesByGenre(selectedGenre);
-      setMovies(filtered);
-    };
-    if (selectedGenre) loadFilteredMovies();
     loadGenres();
-    if (!selectedGenre) load();
+  }, []);
+
+  useEffect(() => {
+    const loadMovies = async () => {
+      setIsLoading(true);
+      try {
+        let data;
+        if (selectedGenre) {
+          data = await fetchMoviesByGenre(selectedGenre);
+        } else {
+          data = await fetchMoviesList();
+        }
+        setMovies(data);
+      } catch (error) {
+        console.error("Erro ao carregar filmes:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadMovies();
   }, [selectedGenre]);
 
   return (
     <>
       <MoviesFilter genres={genres} setSelectedGenre={setSelectedGenre} />
 
-      <div className="grid grid-cols-3 gap-4">
-        {movies.map((movie) => (
-          <MovieCard key={movie.id} {...movie} />
-        ))}
-      </div>
+      {isLoading ? (
+        <div className="flex justify-center p-8">
+          <p>Carregando filmes...</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {movies.length > 0 ? (
+            movies.map((movie) => <MovieCard key={movie.id} {...movie} />)
+          ) : (
+            <p>Nenhum filme encontrado.</p>
+          )}
+        </div>
+      )}
     </>
   );
 };
