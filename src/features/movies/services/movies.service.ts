@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MovieListResult } from "./entities/movies.entitie";
+import { MovieListResult } from "./entities/movies.entity";
 
 const API_KEY =
   "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MGE4OWUxMWEwNWRkMjg0OWI2MmU3ZTFkZDczNmU1MCIsIm5iZiI6MTc0MTUzNzI3MS42ODMsInN1YiI6IjY3Y2RiZmY3MmJkMjFjODA2ZjEwZjU0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nIIUI3anqUokGqe4ARhutk73aiFi7Ds1pBVBYPHlIgs";

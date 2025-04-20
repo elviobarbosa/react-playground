@@ -1,0 +1,235 @@
+:root {
+    --perto-main-color: #0B5A6A;
+}
+
+@font-face {
+    font-family: calibri light;
+    font-style: normal;
+    font-weight: 300;
+    src: local('Calibri Light'), url(https://fonts.cdnfonts.com/s/14017/calibril.woff) format('woff')
+}
+
+/**********************
+    Reset do estilo do plugin
+**********************/
+
+/*#perto-digital-tool-temp,
+#perto-digital-tool-temp * {
+    overflow-x: initial !important;
+}*/
+
+#perto-digital-tool-temp * {
+    font-family: 'Calibri Light', sans-serif !important;
+    font-weight: bold !important;
+}
+
+
+#perto-digital-tool-temp {
+    position: fixed;
+    z-index: 9999999;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+}
+
+#perto-digital-tool-temp button {
+    z-index: 99999 !important;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--perto-main-color) !important;
+    cursor: pointer;
+    border-radius: 100%;
+    height: 50px !important;
+    width: 50px !important;
+    padding: 0px;
+    border: none;
+    position: relative;
+    min-width: initial !important;
+    margin: 0 !important;
+    z-index: 2;
+}
+
+#perto-digital-tool-temp .pertoButtonBanner {
+    background-color: transparent;
+    overflow: hidden;
+    max-width: 0px;
+    opacity: 0 !important;
+    border-radius: 25px;
+    position: absolute;
+    left: 20px;
+    white-space: nowrap;
+    top: 5px;
+    z-index: 1;
+    display:flex;
+    align-items: center;
+    font-family: 'Calibri Light', sans-serif !important;
+    letter-spacing: 1px !important;
+    color: var(--perto-main-color);
+    font-weight: 600 !important;
+    font-size: 17px !important;
+    transition: all 0.2s linear !important;
+    height: 20px;
+    box-sizing: content-box !important;
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: content-box !important;
+}
+
+#perto-digital-tool-temp button img {
+    height: 40px;
+    max-width: 40px
+}
+
+#perto-digital-tool-temp #perto-banner-temp {
+    overflow: hidden;
+    display: flex;
+    width: 0px;
+    gap: 10px;
+    padding-top: 60px;
+    top: 0px;
+    left: 0px;
+    max-height: 0px;
+    flex-direction: column;
+    align-items: start;
+    position: absolute;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s linear !important;
+}
+
+#perto-digital-tool-temp #perto-banner-temp #divMainFuncButton {
+    position: relative;
+}
+
+.perto-exter-func-button svg {
+    fill: white;
+    height: 40px;
+    width: 40px;
+}
+
+#perto_exter_func_face_navigation svg {
+    fill: white;
+    stroke: white;
+    height: 30px;
+    width: 30px;
+}
+
+#perto-digital-tool-temp.showPertoBanner .pertoButtonBanner {
+    opacity: 1 !important;
+    background-color: color-mix(in srgb, whitesmoke 75%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 10px 20px 10px 40px;
+    max-width: 200px;
+}
+
+#perto-digital-tool-temp.reversePertoBanner {
+    flex-direction: column-reverse;
+    justify-content: end;
+}
+
+#perto-digital-tool-temp.reversePertoBanner #perto-banner-temp {
+    flex-direction: column-reverse;
+    top: auto;
+    bottom: 60px;
+}
+
+#perto-digital-tool-temp.showPertoBanner #perto-banner-temp {
+    max-height: 300px;
+    width: 255px;
+}
+
+#perto-digital-tool-temp.reverseWidthPertoBanner .pertoButtonBanner {
+    left: auto;
+    right: 20px;
+    padding: 10px 40px 10px 20px;
+    text-align: end;
+}
+
+#perto-digital-tool-temp.reverseWidthPertoBanner #perto-banner-temp {
+    left: auto;
+    right: 0px;
+    align-items: end;
+}
+
+#perto-digital-tool-temp.reversePertoBanner div.showPertoBanner {
+    margin-bottom: 25px;
+}
+
+#perto-digital-tool-temp.pertoButtonLoading button::after {
+    content: "";
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+.perto-arrow-button::before,
+.perto-arrow-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    transform: translateY(-50%);
+}
+
+.perto-arrow-button::before {
+    left: -15px;
+    border-right: 10px solid var(--perto-main-color);
+}
+
+.perto-arrow-button::after {
+    right: -15px;
+    border-left: 10px solid var(--perto-main-color);
+}
+
+.perto-arrow-button-top::before,
+.perto-arrow-button-top::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    transform: translateX(-50%);
+}
+
+.perto-arrow-button-top::before {
+    top: -15px;
+    border-bottom: 10px solid var(--perto-main-color);
+}
+
+.perto-arrow-button-top::after {
+    bottom: -15px;
+    border-top: 10px solid var(--perto-main-color);
+}

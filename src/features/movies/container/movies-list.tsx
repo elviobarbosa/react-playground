@@ -1,73 +1,75 @@
-import { useEffect, useState } from "react";
-import {
-  fetchMovieGenres,
-  fetchMoviesByGenre,
-  fetchMoviesList,
-} from "../services/movies.service";
-import { MovieListResult } from "../services/entities/movies.entitie";
 import { usePageTitle } from "@/shared/lib/hooks/usePageTitle";
-import MoviesFilter from "../components/movies-filter";
+import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { useMoviesStore } from "../services/movies.store";
 import MovieCard from "../components/movies-card";
+import MoviesFilter from "../components/movies-filter";
 
 const MoviesList = () => {
   usePageTitle("Filmes");
-  const [movies, setMovies] = useState<MovieListResult[]>([]);
-  const [genres, setGenres] = useState<{ id: number; name: string }[]>([]);
-  const [selectedGenre, setSelectedGenre] = useState<number | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const {
+    movies,
+    genres,
+    isLoading,
+    fetchGenres,
+    fetchMovies,
+    setSelectedGenre,
+  } = useMoviesStore();
 
   useEffect(() => {
-    const loadGenres = async () => {
-      try {
-        const data = await fetchMovieGenres();
-        setGenres(data);
-      } catch (error) {
-        console.error("Erro ao carregar gêneros:", error);
-      }
-    };
-
-    loadGenres();
-  }, []);
+    fetchGenres();
+  }, [fetchGenres]);
 
   useEffect(() => {
-    const loadMovies = async () => {
-      setIsLoading(true);
-      try {
-        let data;
-        if (selectedGenre) {
-          data = await fetchMoviesByGenre(selectedGenre);
-        } else {
-          data = await fetchMoviesList();
-        }
-        setMovies(data);
-      } catch (error) {
-        console.error("Erro ao carregar filmes:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    const genreParam = searchParams.get("genre");
+    const genreId = genreParam ? parseInt(genreParam) : null;
 
-    loadMovies();
-  }, [selectedGenre]);
+    if (genreId !== null) {
+      setSelectedGenre(genreId);
+    } else {
+      fetchMovies();
+    }
+  }, [searchParams, setSelectedGenre, fetchMovies]);
+
+  const handleGenreChange = (genreId: number | null) => {
+    if (genreId !== null) {
+      setSearchParams({ genre: genreId.toString() });
+    } else {
+      setSearchParams({});
+    }
+    setSelectedGenre(genreId);
+  };
 
   return (
-    <>
-      <MoviesFilter genres={genres} setSelectedGenre={setSelectedGenre} />
+    <div className="container mx-auto px-4 py-6">
+      <MoviesFilter
+        genres={genres}
+        selectedGenre={
+          searchParams.get("genre")
+            ? parseInt(searchParams.get("genre")!)
+            : null
+        }
+        onGenreChange={handleGenreChange}
+      />
 
       {isLoading ? (
         <div className="flex justify-center p-8">
-          <p>Carregando filmes...</p>
+          <p className="text-lg">Carregando filmes...</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
           {movies.length > 0 ? (
             movies.map((movie) => <MovieCard key={movie.id} {...movie} />)
           ) : (
-            <p>Nenhum filme encontrado.</p>
+            <p className="col-span-full text-center text-gray-600">
+              Nenhum filme encontrado.
+            </p>
           )}
         </div>
       )}
-    </>
+    </div>
   );
 };
 

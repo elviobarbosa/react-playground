@@ -49,7 +49,6 @@ const RegisterUserNew = () => {
       ...dadosPessoais,
       isValid,
     }));
-    console.log(dadosPessoais);
     if (isValid) {
       toast("Formulário enviado com sucesso", {
         icon: "✅",

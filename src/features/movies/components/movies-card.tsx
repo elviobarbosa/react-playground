@@ -1,4 +1,4 @@
-import { MovieListResult } from "../services/entities/movies.entitie";
+import { MovieListResult } from "../services/entities/movies.entity";
 
 const MovieCard = (movie: MovieListResult) => {
   return (
