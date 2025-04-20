@@ -23,6 +23,11 @@ export const MENU_LEFT = {
       url: "/register-user",
       icon: IconUserPlus,
     },
+    {
+      title: "Filmes",
+      url: "/movies",
+      icon: IconCamera,
+    },
   ],
   navClouds: [
     {
