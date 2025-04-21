@@ -1,14 +1,14 @@
 import LazyImage from "@/shared/components/lazy-load";
 import { MovieListResult } from "../services/entities/movies.entity";
 
-const MovieCard = (movie: MovieListResult) => {
+const MovieCardComponent = (movie: MovieListResult) => {
   return (
     <div key={movie.id} className="bg-white shadow rounded-lg overflow-hidden">
       <LazyImage
         src={movie.poster_path}
         alt={`Poster de ${movie.title}`}
         className="w-full h-72 object-cover"
-        placeholderSrc="/vite.svg"
+        placeholderSrc="/elo.svg"
       />
       <div className="p-4">
         <h2 className="text-xl font-semibold">{movie.title} </h2>
@@ -19,4 +19,4 @@ const MovieCard = (movie: MovieListResult) => {
   );
 };
 
-export default MovieCard;
+export default MovieCardComponent;

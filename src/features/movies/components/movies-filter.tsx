@@ -1,7 +1,7 @@
 import { MoviesFilterProps } from "../services/entities/movies.entity";
 import PromoCard from "@/shared/components/promo-card";
 
-const MoviesFilter = ({
+const MoviesFilterComponent = ({
   genres,
   selectedGenre,
   onGenreChange,
@@ -43,4 +43,4 @@ const MoviesFilter = ({
   );
 };
 
-export default MoviesFilter;
+export default MoviesFilterComponent;

@@ -11,7 +11,7 @@ const LazyImage = ({
   src,
   alt,
   className = "",
-  placeholderSrc = "/vite.svg",
+  placeholderSrc = "/elo.svg",
 }: LazyImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
