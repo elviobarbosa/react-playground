@@ -1,7 +1,7 @@
 import { Button } from "@/shared/components/ui/button";
 import { usePageTitle } from "@/shared/lib/hooks/usePageTitle";
 import { Plus } from "lucide-react";
-import CardAddress from "@/shared/components/CardAddress";
+import CardAddress from "@/shared/components/card-address";
 import CardPhones from "@/shared/components/card-phones";
 import { useAddresses } from "@/shared/lib/hooks/useAddress";
 import { usePhones } from "@/shared/lib/hooks/usePhones";
