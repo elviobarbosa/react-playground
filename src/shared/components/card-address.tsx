@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { maskValue } from "../lib/helpers/masks.helper";
 import { Address } from "../lib/hooks/useAddress";
 import { Button } from "./ui/button";
@@ -22,12 +21,6 @@ const CardAddress = ({
   removeItem,
 }: CardAddressProps) => {
   const maskCep = (value: string) => maskValue(value, "cep");
-
-  useEffect(() => {
-    if (address.cep && address.cep !== maskCep(address.cep)) {
-      updateField(index, "cep", maskCep(address.cep));
-    }
-  }, [address.cep, index, updateField]);
 
   return (
     <>

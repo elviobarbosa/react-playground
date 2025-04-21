@@ -2,7 +2,7 @@ import { Button } from "@/shared/components/ui/button";
 import { usePageTitle } from "@/shared/lib/hooks/usePageTitle";
 import { Plus } from "lucide-react";
 import CardAddress from "@/shared/components/CardAddress";
-import CardPhones from "@/shared/components/CardPhones";
+import CardPhones from "@/shared/components/card-phones";
 import { useAddresses } from "@/shared/lib/hooks/useAddress";
 import { usePhones } from "@/shared/lib/hooks/usePhones";
 import RegisterUserDadosPessoaisComponent from "../components/register-user-dados-pessoais";
@@ -74,7 +74,10 @@ const RegisterUserNew = () => {
           <CardAddress
             key={index}
             index={index}
-            address={address}
+            address={{
+              ...address,
+              cep: transform(address.cep).cep().value(),
+            }}
             total={addresses.length}
             updateField={updateAddress}
             removeItem={removeAddress}
@@ -94,7 +97,10 @@ const RegisterUserNew = () => {
           <CardPhones
             key={index}
             index={index}
-            phone={phone}
+            phone={{
+              ...phone,
+              number: transform(phone.number).phone().value(),
+            }}
             total={phones.length}
             updateField={updatePhone}
             removeItem={removePhone}

@@ -20,6 +20,24 @@ export const transform = <T>(value: T) => {
       return this;
     },
 
+    phone() {
+      if (typeof this._value === "string") {
+        (this._value as string) = (this._value as string)
+          .replace(/\D/g, "")
+          .replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+      }
+      return this;
+    },
+
+    cep() {
+      if (typeof this._value === "string") {
+        (this._value as string) = (this._value as string)
+          .replace(/\D/g, "")
+          .replace(/(\d{5})(\d{3})/, "$1-$2");
+      }
+      return this;
+    },
+
     uppercase() {
       if (typeof this._value === "string") {
         (this._value as string) = this._value.toUpperCase();

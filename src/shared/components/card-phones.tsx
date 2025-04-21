@@ -1,18 +1,10 @@
-import { useEffect } from "react";
 import { maskValue } from "../lib/helpers/masks.helper";
-import { Phones } from "../lib/hooks/usePhones";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import { Input } from "./ui/input";
 import { Trash2 } from "lucide-react";
+import { CardPhonesProps } from "../entities/phone.entity";
 
-interface CardPhonesProps {
-  index: number;
-  phone: Phones;
-  total: number;
-  updateField: (index: number, campo: keyof Phones, valor: unknown) => void;
-  removeItem: (index: number) => void;
-}
 const maskPhone = (value: string) => maskValue(value, "phone");
 
 const CardPhones = ({
@@ -22,12 +14,6 @@ const CardPhones = ({
   updateField,
   removeItem,
 }: CardPhonesProps) => {
-  useEffect(() => {
-    if (phone.number && phone.number !== maskPhone(phone.number)) {
-      updateField(index, "number", maskPhone(phone.number));
-    }
-  }, [phone.number, index, updateField]);
-
   return (
     <>
       <Card key={index} className="p-4 mb-4">

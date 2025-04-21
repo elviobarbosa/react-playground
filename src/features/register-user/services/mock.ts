@@ -15,9 +15,9 @@ export const AddressesMock = [
 
 export const PhonesMock = [
   {
-    number: "123456789",
+    number: "85997947644",
   },
   {
-    number: "987654321",
+    number: "85997947644",
   },
 ];
