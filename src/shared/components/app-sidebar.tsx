@@ -13,6 +13,7 @@ import {
   SidebarMenuItem,
 } from "@/shared/components/ui/sidebar";
 import { MENU_LEFT } from "../lib/config/menu.config";
+import LogoComponent from "./logo";
 
 const data = MENU_LEFT;
 
@@ -26,9 +27,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <a href="#">
+              <a href="/">
                 <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Metal Inc.</span>
+                <LogoComponent />
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
