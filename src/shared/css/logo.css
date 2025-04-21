@@ -1,0 +1,78 @@
+/* src/components/ELviOLogo.css */
+.logo-container {
+  display: inline-flex;
+  position: relative;
+  overflow: visible;
+  align-items: center;
+}
+
+.letter-el {
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+}
+
+.middle-text {
+  display: inline-block;
+  animation: slideIn 5s infinite ease-in-out;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 0px;
+}
+
+.letter-o {
+  display: inline-block;
+  animation: pushRight 5s infinite ease-in-out;
+}
+
+@keyframes slideIn {
+  0%,
+  10% {
+    opacity: 0;
+    max-width: 0px;
+    transform: translateX(-10px);
+  }
+
+  30%,
+  50% {
+    opacity: 1;
+    max-width: 30px;
+    transform: translateX(0);
+  }
+
+  70%,
+  80% {
+    opacity: 0;
+    max-width: 0px;
+    transform: translateX(-10px);
+  }
+
+  90%,
+  100% {
+    opacity: 0;
+    max-width: 0px;
+    transform: translateX(-10px);
+  }
+}
+
+@keyframes pushRight {
+  0%,
+  10% {
+    transform: translateX(0px);
+  }
+
+  30%,
+  50% {
+    transform: translateX(0);
+  }
+
+  70%,
+  80% {
+    transform: translateX(0);
+  }
+
+  90%,
+  100% {
+    transform: translateX(0);
+  }
+}

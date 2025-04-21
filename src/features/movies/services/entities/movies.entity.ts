@@ -23,9 +23,10 @@ export type MoviesState = {
   selectedGenre: number | null;
   isLoading: boolean;
 
-  fetchGenres: () => Promise<void>;
-  fetchMovies: () => Promise<void>;
+  setMovies: (movies: MovieListResult[]) => void;
+  setGenres: (genres: Genre[]) => void;
   setSelectedGenre: (genreId: number | null) => void;
+  setIsLoading: (isLoading: boolean) => void;
 };
 
 export type MoviesFilterProps = {
