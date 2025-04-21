@@ -63,8 +63,8 @@ const RegisterUserNew = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
+    <div>
+      <form onSubmit={handleSubmit} className="max-w-4xl mx-auto px-3 py-12">
         <RegisterUserDadosPessoaisComponent
           formData={dadosPessoais}
           updateForm={updateDadosPessoais}
@@ -126,7 +126,7 @@ const RegisterUserNew = () => {
           2
         )}
       </pre>
-    </>
+    </div>
   );
 };
 export default RegisterUserNew;

@@ -1,0 +1,144 @@
+import { usePageTitle } from "@/shared/lib/hooks/usePageTitle";
+
+const AboutElvioComponent = () => {
+  usePageTitle("Curriculum");
+  return (
+    <div className="max-w-4xl mx-auto px-6 py-12">
+      <h1 className="text-4xl font-bold mb-4">Elvio Castro Barbosa</h1>
+      <h2 className="text-2xl font-semibold mb-6">Front-end Developer</h2>
+
+      <section className="mb-8">
+        <h3 className="text-xl font-semibold mb-2">Resumo</h3>
+        <p>
+          Desenvolvedor front-end com vasta experiência em Angular, React e
+          design UX, criação de interfaces de usuário eficientes e de alto
+          desempenho. Experiência em gerenciar e orientar equipes de
+          desenvolvimento, garantindo código de alta qualidade e padrões de
+          desempenho. Experiente em marketing e estratégia digital, com
+          histórico de campanhas publicitárias bem-sucedidas e otimizações de
+          processos. Apaixonado por construir soluções escaláveis e melhorar
+          fluxos de trabalho de desenvolvimento.
+        </p>
+      </section>
+
+      <section className="mb-8">
+        <h3 className="text-xl font-semibold mb-2">Conhecimento</h3>
+        <ul className="list-disc list-inside">
+          <li>
+            <strong>Front-end:</strong> Angular, React.js, Vue.js, Next.js,
+            TypeScript, JavaScript, Unit Tests (Jasmine), Webpack, jQuery,
+            HTML5, CSS, SASS, LESS
+          </li>
+          <li>
+            <strong>Leadership:</strong> Code Review, Quality Assurance,
+            Performance Optimization, Agile
+          </li>
+          <li>
+            <strong>CMS & Backend:</strong> WordPress (ACF, Gutenberg), PHP,
+            SQL, MySQL, Nest.js, Java
+          </li>
+          <li>
+            <strong>UI/UX:</strong> Wireframing, Prototyping, Adobe XD, Figma
+          </li>
+          <li>
+            <strong>Outros:</strong> Python, XML, SEO, Power BI, Adobe
+            Illustrator/Photoshop
+          </li>
+        </ul>
+      </section>
+
+      <section className="mb-8">
+        <h3 className="text-xl font-semibold mb-2">Experiência Profissional</h3>
+        <div className="mb-4">
+          <h4 className="font-semibold">
+            Maps Financial – Front-end Developer | Angular (2023 - atual)
+          </h4>
+          <ul className="list-disc list-inside">
+            <li>
+              Desenvolvi interfaces com Angular 8, 14 e 17 focadas em
+              performance e responsividade.
+            </li>
+            <li>
+              Melhorei a arquitetura base, aumentando produtividade em 40%.
+            </li>
+            <li>
+              Criei componentes reutilizáveis e otimizei performance com Virtual
+              Scrolling.
+            </li>
+            <li>Integração robusta com APIs complexas.</li>
+          </ul>
+        </div>
+        <div className="mb-4">
+          <h4 className="font-semibold">
+            Fuerza Studio – Front-end Technical Lead | WordPress (2021 - 2023)
+          </h4>
+          <ul className="list-disc list-inside">
+            <li>
+              Liderei equipe de front-end garantindo qualidade e performance.
+            </li>
+            <li>Implementei code reviews e testes, reduzindo bugs.</li>
+            <li>
+              Criei componentes reutilizáveis e otimizei processos de
+              desenvolvimento.
+            </li>
+          </ul>
+        </div>
+        <div className="mb-4">
+          <h4 className="font-semibold">
+            Carbono Digital – Art Director | UX Designer | WordPress (2016 -
+            2021)
+          </h4>
+          <ul className="list-disc list-inside">
+            <li>Criei campanhas digitais e UIs para sites e apps.</li>
+            <li>
+              Gerenciei projetos e implementei automações para otimização.
+            </li>
+            <li>
+              Desenvolvi vários sites e ações interativas, como a primeira
+              vitrine virtual do Norte/Nordeste.
+            </li>
+            <li>
+              Finalista no Clube de Criação de SP com a peça "Opções da Mrh".
+            </li>
+          </ul>
+        </div>
+        <div className="mb-4">
+          <h4 className="font-semibold">
+            Araújo e Brilhante Group – Digital Marketing Strategist (2011 -
+            2016)
+          </h4>
+          <ul className="list-disc list-inside">
+            <li>Campanhas de marketing digital para marcas de moda.</li>
+            <li>Melhorei visibilidade e vendas com ações promocionais.</li>
+            <li>Prêmio marcas de moda mais conhecida do Ceará (2012, 2013).</li>
+            <li>Em 2 anos dobramos o número de pontos de venda no Brasil.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="mb-8">
+        <h3 className="text-xl font-semibold mb-2">Educação</h3>
+        <p>
+          Bacharelado em Ciência da Computação (Incompleto) – Universidade
+          Estácio de Sá
+        </p>
+      </section>
+
+      <section>
+        <h3 className="text-xl font-semibold mb-2">Cursos Recentes</h3>
+        <ul className="list-disc list-inside">
+          <li>Java and Spring Boot (2024) – Udemy</li>
+          <li>Next.JS / Node / ReactJs / Typescript (2022) – Rocket City</li>
+          <li>Creating Prototype Design (2019) – Udacity</li>
+          <li>Power BI and Data Science (2019) – Data Science Academy</li>
+          <li>
+            Intro to I.A and Machine Learning (2018-2019) – Udacity Nanodegree
+          </li>
+          <li>Digital Planning (2018) – Curso com profissionais locais</li>
+        </ul>
+      </section>
+    </div>
+  );
+};
+
+export default AboutElvioComponent;
