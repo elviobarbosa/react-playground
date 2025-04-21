@@ -1,8 +1,8 @@
 import axios from "axios";
 import { MovieListResult } from "./entities/movies.entity";
 
-const API_KEY =
-  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MGE4OWUxMWEwNWRkMjg0OWI2MmU3ZTFkZDczNmU1MCIsIm5iZiI6MTc0MTUzNzI3MS42ODMsInN1YiI6IjY3Y2RiZmY3MmJkMjFjODA2ZjEwZjU0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nIIUI3anqUokGqe4ARhutk73aiFi7Ds1pBVBYPHlIgs";
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+console.log(API_KEY);
 const BASE_URL = "https://api.themoviedb.org/3";
 const IMAGE_URL = "https://image.tmdb.org/t/p/w500";
 

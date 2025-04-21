@@ -1,9 +1,15 @@
 import { usePageTitle } from "@/shared/lib/hooks/usePageTitle";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useMoviesStore } from "../services/movies.store";
 import MovieCard from "../components/movies-card";
 import MoviesFilter from "../components/movies-filter";
+import { toast } from "sonner";
+import {
+  fetchMovieGenres,
+  fetchMoviesByGenre,
+  fetchMoviesList,
+} from "../services/movies.service";
 
 const MoviesList = () => {
   usePageTitle("Filmes");
@@ -13,44 +19,77 @@ const MoviesList = () => {
     movies,
     genres,
     isLoading,
-    fetchGenres,
-    fetchMovies,
+    setMovies,
+    setGenres,
+    setIsLoading,
     setSelectedGenre,
+    selectedGenre,
   } = useMoviesStore();
+
+  const fetchGenres = useCallback(async () => {
+    try {
+      const data = await fetchMovieGenres();
+      setGenres(data);
+    } catch (error) {
+      toast(`Erro ao carregar gêneros: ${error}`, {
+        icon: "🚨",
+      });
+    }
+  }, [setGenres]);
+
+  const fetchMovies = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      let data;
+      if (selectedGenre) {
+        data = await fetchMoviesByGenre(selectedGenre);
+      } else {
+        data = await fetchMoviesList();
+      }
+      setMovies(data);
+    } catch (error) {
+      toast(`Erro ao carregar gêneros: ${error}`, {
+        icon: "🚨",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  }, [selectedGenre, setMovies, setIsLoading]);
 
   useEffect(() => {
     fetchGenres();
   }, [fetchGenres]);
 
   useEffect(() => {
+    fetchMovies();
+  }, [fetchMovies, selectedGenre]);
+
+  useEffect(() => {
     const genreParam = searchParams.get("genre");
     const genreId = genreParam ? parseInt(genreParam) : null;
 
-    if (genreId !== null) {
+    if (genreId !== selectedGenre) {
       setSelectedGenre(genreId);
-    } else {
-      fetchMovies();
     }
-  }, [searchParams, setSelectedGenre, fetchMovies]);
+  }, [searchParams, setSelectedGenre, selectedGenre]);
 
-  const handleGenreChange = (genreId: number | null) => {
-    if (genreId !== null) {
-      setSearchParams({ genre: genreId.toString() });
-    } else {
-      setSearchParams({});
-    }
-    setSelectedGenre(genreId);
-  };
+  const handleGenreChange = useCallback(
+    (genreId: number | null) => {
+      if (genreId !== null) {
+        setSearchParams({ genre: genreId.toString() });
+      } else {
+        setSearchParams({});
+      }
+      setSelectedGenre(genreId);
+    },
+    [setSearchParams, setSelectedGenre]
+  );
 
   return (
     <div className="container mx-auto px-4 py-6">
       <MoviesFilter
         genres={genres}
-        selectedGenre={
-          searchParams.get("genre")
-            ? parseInt(searchParams.get("genre")!)
-            : null
-        }
+        selectedGenre={selectedGenre}
         onGenreChange={handleGenreChange}
       />
 
