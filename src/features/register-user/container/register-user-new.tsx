@@ -17,7 +17,7 @@ import {
 } from "../services/validators/register-user-dados-pessoais.validator";
 import { toast } from "sonner";
 
-const RegisterUserNew = () => {
+const RegisterUserNewComponent = () => {
   usePageTitle("Novo usuário");
 
   const { addresses, addAddress, updateAddress, removeAddress } =
@@ -135,4 +135,4 @@ const RegisterUserNew = () => {
     </div>
   );
 };
-export default RegisterUserNew;
+export default RegisterUserNewComponent;
