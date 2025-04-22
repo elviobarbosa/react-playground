@@ -1,18 +1,29 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MainLayout from "./MainLayout";
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { lazy } from "react";
-const MoviesIndexComponent = lazy(() => import("./features/movies/container/movies-index"));
-const AboutProjectComponent = lazy(() => import("./features/about/components/about-project"));
-const AboutElvioComponent  = lazy(() => import("./features/about/components/about-elvio"));
-const RegisterUserNewComponent =  lazy(() => import("./features/register-user/container/register-user-new"));
+import { LoadingQuery } from "./shared/components/loading-query";
+
+import { lazyWithLoader } from "./shared/lib/lazy-loading.utils";
+const MainLayout = lazyWithLoader(() => import("./MainLayout"));
+const MoviesIndexComponent = lazyWithLoader(
+  () => import("./features/movies/container/movies-index")
+);
+const AboutProjectComponent = lazyWithLoader(
+  () => import("./features/about/components/about-project")
+);
+const AboutElvioComponent = lazyWithLoader(
+  () => import("./features/about/components/about-elvio")
+);
+const RegisterUserNewComponent = lazyWithLoader(
+  () => import("./features/register-user/container/register-user-new")
+);
 
 function AppRoutes() {
   const queryClient = new QueryClient();
+
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <LoadingQuery />
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<AboutProjectComponent />} />

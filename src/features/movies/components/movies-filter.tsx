@@ -1,5 +1,4 @@
 import { MoviesFilterProps } from "../services/entities/movies.entity";
-import PromoCard from "@/shared/components/promo-card";
 
 const MoviesFilterComponent = ({
   genres,
@@ -7,8 +6,7 @@ const MoviesFilterComponent = ({
   onGenreChange,
 }: MoviesFilterProps) => {
   return (
-    <div className="mb-6">
-      <PromoCard />
+    <>
       <h2 className="text-lg font-medium mb-3">Filtrar por gênero</h2>
 
       <div className="flex flex-wrap gap-2">
@@ -39,7 +37,7 @@ const MoviesFilterComponent = ({
           </button>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

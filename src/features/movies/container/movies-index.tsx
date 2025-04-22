@@ -11,6 +11,7 @@ import {
 import MoviesFilterComponent from "../components/movies-filter";
 import { MovieListResult } from "../services/entities/movies.entity";
 import MoviesListComponent from "../components/movies-list";
+import MoviesPromoComponent from "../components/movies-promo-card";
 
 const MoviesIndexComponent = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -68,12 +69,15 @@ const MoviesIndexComponent = () => {
 
   return (
     <div className="container mx-auto px-4 py-6">
-      <MoviesFilterComponent
-        genres={genres}
-        selectedGenre={selectedGenre}
-        onGenreChange={handleGenreChange}
-      />
+      <div className="mb-6">
+        <MoviesPromoComponent />
 
+        <MoviesFilterComponent
+          genres={genres}
+          selectedGenre={selectedGenre}
+          onGenreChange={handleGenreChange}
+        />
+      </div>
       {isLoading ? (
         <div className="flex justify-center p-8">
           <p className="text-lg">Carregando filmes...</p>

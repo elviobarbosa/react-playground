@@ -1,6 +1,6 @@
-import { Card } from "./ui/card";
+import { Card } from "@/shared/components/ui/card";
 
-const PromoCard = () => {
+const MoviesPromoComponent = () => {
   return (
     <Card className="mx-auto overflow-hidden bg-gradient-to-t from-black/10 to-transparent md:bg-gradient-to-r mb-6">
       <div className="md:flex">
@@ -27,4 +27,4 @@ const PromoCard = () => {
   );
 };
 
-export default PromoCard;
+export default MoviesPromoComponent;
