@@ -11,8 +11,8 @@ const AboutProjectComponent = () => {
       <p className="mb-8">
         Este projeto foi desenvolvido como parte do processo seletivo para a
         posição de <strong>Desenvolvedor Front-End Sênior (React)</strong>. A
-        proposta é demonstrar domínio técnico em componentes, gerenciamento de
-        estado, formulários e boas práticas com React moderno.
+        proposta é demonstrar conhecimento técnico em componentes, gerenciamento
+        de estado, formulários e boas práticas com React moderno.
       </p>
 
       <h2 className="text-2xl font-semibold mb-4">Visão Geral</h2>
@@ -44,7 +44,7 @@ const AboutProjectComponent = () => {
         <li>Conversão e tratamento de dados antes do envio.</li>
       </ul>
       <p className="mb-8">
-        <strong>Objetivo técnico</strong>: mostrar controle total sobre o
+        <strong>Objetivo técnico</strong>: mostrar conhecimento sobre o
         formulário e a estrutura de dados sem depender de bibliotecas externas.
       </p>
 

@@ -10,10 +10,10 @@ const AboutElvioComponent = () => {
       <section className="mb-8">
         <h3 className="text-xl font-semibold mb-2">Resumo</h3>
         <p>
-          Desenvolvedor front-end com vasta experiência em Angular, React e
+          Desenvolvedor front-end com ampla experiência em Angular, React e
           design UX, criação de interfaces de usuário eficientes e de alto
           desempenho. Experiência em gerenciar e orientar equipes de
-          desenvolvimento, garantindo código de alta qualidade e padrões de
+          desenvolvimento, garantindo código de qualidade e padrões de
           desempenho. Experiente em marketing e estratégia digital, com
           histórico de campanhas publicitárias bem-sucedidas e otimizações de
           processos. Apaixonado por construir soluções escaláveis e melhorar
@@ -55,15 +55,15 @@ const AboutElvioComponent = () => {
           </h4>
           <ul className="list-disc list-inside">
             <li>
-              Desenvolvi interfaces com Angular 8, 14 e 17 focadas em
+              Desenvolvimento de interfaces com Angular 8, 14 e 17 focadas em
               performance e responsividade.
             </li>
             <li>
-              Melhorei a arquitetura base, aumentando produtividade em 40%.
+              Melhoria da arquitetura base, aumentando produtividade em 40%.
             </li>
             <li>
-              Criei componentes reutilizáveis e otimizei performance com Virtual
-              Scrolling.
+              Criação componentes reutilizáveis, melhoria de UX e otimização de
+              performance com Virtual Scrolling.
             </li>
             <li>Integração robusta com APIs complexas.</li>
           </ul>
@@ -74,11 +74,12 @@ const AboutElvioComponent = () => {
           </h4>
           <ul className="list-disc list-inside">
             <li>
-              Liderei equipe de front-end garantindo qualidade e performance.
+              Liderança de equipe de front-end garantindo qualidade e
+              performance.
             </li>
-            <li>Implementei code reviews e testes, reduzindo bugs.</li>
+            <li>Implementação code reviews e testes, reduzindo bugs.</li>
             <li>
-              Criei componentes reutilizáveis e otimizei processos de
+              Criação de componentes reutilizáveis, otimizando processos de
               desenvolvimento.
             </li>
           </ul>
@@ -89,13 +90,14 @@ const AboutElvioComponent = () => {
             2021)
           </h4>
           <ul className="list-disc list-inside">
-            <li>Criei campanhas digitais e UIs para sites e apps.</li>
+            <li>Criação de campanhas digitais e UIs para sites e apps.</li>
             <li>
-              Gerenciei projetos e implementei automações para otimização.
+              Gerenciamento de projetos e implementei automações para
+              otimização.
             </li>
             <li>
-              Desenvolvi vários sites e ações interativas, como a primeira
-              vitrine virtual do Norte/Nordeste.
+              Desenvolvimento de vários sites e ações interativas, como a
+              primeira vitrine virtual do Norte/Nordeste.
             </li>
             <li>
               Finalista no Clube de Criação de SP com a peça "Opções da Mrh".
@@ -109,9 +111,12 @@ const AboutElvioComponent = () => {
           </h4>
           <ul className="list-disc list-inside">
             <li>Campanhas de marketing digital para marcas de moda.</li>
-            <li>Melhorei visibilidade e vendas com ações promocionais.</li>
+            <li>Aumento da visibilidade e vendas com ações promocionais.</li>
             <li>Prêmio marcas de moda mais conhecida do Ceará (2012, 2013).</li>
-            <li>Em 2 anos dobramos o número de pontos de venda no Brasil.</li>
+            <li>
+              Em 2 anos junto a equipe de marketing dobramos o número de pontos
+              de venda no Brasil.
+            </li>
           </ul>
         </div>
       </section>

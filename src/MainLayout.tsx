@@ -4,12 +4,14 @@ import { AppSidebar } from "./shared/components/app-sidebar";
 import { SiteHeader } from "./shared/components/site-header";
 import { TitleProvider } from "./shared/lib/context/TitleContext";
 import { Toaster } from "sonner";
+import ScrollToTop from "./shared/lib/helpers/scroll-top.helper";
 
 export default function MainLayout() {
   return (
     <TitleProvider>
       <SidebarProvider>
         <AppSidebar variant="inset" />
+        <ScrollToTop />
         <SidebarInset>
           <SiteHeader />
           <div className="flex flex-1 flex-col">

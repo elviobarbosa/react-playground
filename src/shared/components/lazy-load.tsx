@@ -22,8 +22,8 @@ const LazyImage = ({
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          if (imgRef.current) {
-            observer.unobserve(imgRef.current);
+          if (observedImg) {
+            observer.unobserve(observedImg);
           }
         }
       },
@@ -32,14 +32,14 @@ const LazyImage = ({
         threshold: 0.01,
       }
     );
-
-    if (imgRef.current) {
-      observer.observe(imgRef.current);
+    const observedImg = imgRef.current;
+    if (observedImg) {
+      observer.observe(observedImg);
     }
 
     return () => {
-      if (imgRef.current) {
-        observer.unobserve(imgRef.current);
+      if (observedImg) {
+        observer.unobserve(observedImg);
       }
     };
   }, []);
